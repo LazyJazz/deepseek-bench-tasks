@@ -2,6 +2,7 @@
 #include "test_support.h"
 
 #include <algorithm>
+#include <array>
 #include <cstdint>
 #include <fstream>
 #include <set>
@@ -32,6 +33,9 @@ int main(int argc,char**argv){return Run([&]{CHECK(argc==2);std::string g=argv[1
     for(auto c:std::vector<std::array<int,3>>{{4,3,3},{0,0,4},{5,5,0},{2,2,-1}}){Image i(9,8,white);FillCircle(i,c[0],c[1],c[2],red);Points expected;if(c[2]>=0)for(int y=0;y<8;++y)for(int x=0;x<9;++x){std::int64_t dx=x-c[0],dy=y-c[1];if(dx*dx+dy*dy<=std::int64_t(c[2])*c[2])expected.insert({x,y});}CHECK(Colored(i,red)==expected);}
   }else if(g=="triangle"){CheckReferenceTriangles();
     auto check=[&](std::array<int,6>v){Image i(11,10,white);FillTriangle(i,v[0],v[1],v[2],v[3],v[4],v[5],red);Points expected;auto cross=[](std::int64_t ax,std::int64_t ay,std::int64_t bx,std::int64_t by,std::int64_t px,std::int64_t py){return (bx-ax)*(py-ay)-(by-ay)*(px-ax);};auto area=cross(v[0],v[1],v[2],v[3],v[4],v[5]);for(int y=0;y<10;++y)for(int x=0;x<11;++x){if(area==0){if(LineOracle(v[0],v[1],v[2],v[3]).count({x,y})||LineOracle(v[2],v[3],v[4],v[5]).count({x,y})||LineOracle(v[4],v[5],v[0],v[1]).count({x,y}))expected.insert({x,y});}else{auto a=cross(v[0],v[1],v[2],v[3],x,y),b=cross(v[2],v[3],v[4],v[5],x,y),c=cross(v[4],v[5],v[0],v[1],x,y);if((a>=0&&b>=0&&c>=0)||(a<=0&&b<=0&&c<=0))expected.insert({x,y});}}CHECK(Colored(i,red)==expected);};
-    check({1,1,9,2,3,8});check({3,8,9,2,1,1});check({-5,2,5,-4,14,8});check({1,1,5,3,9,5});
+    check(std::array<int,6>{{1,1,9,2,3,8}});
+    check(std::array<int,6>{{3,8,9,2,1,1}});
+    check(std::array<int,6>{{-5,2,5,-4,14,8}});
+    check(std::array<int,6>{{1,1,5,3,9,5}});
   }else CHECK(false);
 });}
