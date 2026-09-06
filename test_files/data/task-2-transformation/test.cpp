@@ -48,7 +48,10 @@ int main(int argc, char **argv) {
       auto matrix = Rotate({0, 0, 7}, pi / 2);
       ExpectVector(matrix * Eigen::Vector4f(1, 0, 0, 1), {0, 1, 0, 1});
       Eigen::Vector3f axis(1, 2, 3), value(1.5f, -2.0f, .25f);
-      auto rotated = (Rotate(axis, -.731f) * Eigen::Vector4f(value.x(), value.y(), value.z(), 0)).head<3>();
+      Eigen::Vector3f rotated =
+          (Rotate(axis, -.731f) *
+           Eigen::Vector4f(value.x(), value.y(), value.z(), 0))
+              .head<3>();
       CHECK(Near(rotated.squaredNorm(), value.squaredNorm()));
       auto normalized = axis.normalized();
       ExpectVector(Rotate(axis, -.731f) * Eigen::Vector4f(normalized.x(), normalized.y(), normalized.z(), 0),
@@ -64,10 +67,12 @@ int main(int argc, char **argv) {
       Eigen::Vector3f eye(3, 4, 5), center(-1, 2, -2), up(.2f, 1, .3f);
       auto matrix = LookAt(eye, center, up);
       ExpectVector(matrix * Eigen::Vector4f(eye.x(), eye.y(), eye.z(), 1), {0, 0, 0, 1});
-      auto target = matrix * Eigen::Vector4f(center.x(), center.y(), center.z(), 1);
+      Eigen::Vector4f target =
+          matrix * Eigen::Vector4f(center.x(), center.y(), center.z(), 1);
       CHECK(Near(target.x(), 0) && Near(target.y(), 0) && target.z() < 0);
-      auto right = (center - eye).normalized().cross(up);
-      auto transformed = matrix * Eigen::Vector4f(right.x(), right.y(), right.z(), 0);
+      Eigen::Vector3f right = (center - eye).normalized().cross(up);
+      Eigen::Vector4f transformed =
+          matrix * Eigen::Vector4f(right.x(), right.y(), right.z(), 0);
       CHECK(transformed.x() > 0 && Near(transformed.y(), 0) && Near(transformed.z(), 0));
       auto file = Fixture("lookat.data");
       for (int i = 0; i < 10; ++i) {
@@ -81,11 +86,14 @@ int main(int argc, char **argv) {
       const float cases[][4] = {{pi / 2, 1, .1f, 100}, {.7f, 16.0f / 9, 1, 11}};
       for (const auto &values : cases) {
         auto matrix = Perspective(values[0], values[1], values[2], values[3]);
-        auto near_point = matrix * Eigen::Vector4f(0, 0, -values[2], 1);
-        auto far_point = matrix * Eigen::Vector4f(0, 0, -values[3], 1);
+        Eigen::Vector4f near_point =
+            matrix * Eigen::Vector4f(0, 0, -values[2], 1);
+        Eigen::Vector4f far_point =
+            matrix * Eigen::Vector4f(0, 0, -values[3], 1);
         CHECK(Near(near_point.z() / near_point.w(), 0));
         CHECK(Near(far_point.z() / far_point.w(), 1));
-        auto top = matrix * Eigen::Vector4f(0, std::tan(values[0] / 2) * values[2], -values[2], 1);
+        Eigen::Vector4f top = matrix * Eigen::Vector4f(
+            0, std::tan(values[0] / 2) * values[2], -values[2], 1);
         CHECK(Near(top.y() / top.w(), 1));
       }
       auto file = Fixture("perspective.data");
