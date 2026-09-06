@@ -1,0 +1,7 @@
+/local_output/
+**/build*/
+/eval/*
+!/eval/.gitkeep
+!/eval/test_by_code.py
+**/__pycache__/
+.DS_Store

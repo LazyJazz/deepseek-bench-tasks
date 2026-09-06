@@ -1,0 +1,9 @@
+[submodule "workspace/external/glm"]
+	path = workspace/external/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "workspace/external/eigen"]
+	path = workspace/external/eigen
+	url = https://gitlab.com/libeigen/eigen.git
+[submodule "workspace/external/stb"]
+	path = workspace/external/stb
+	url = https://github.com/nothings/stb.git

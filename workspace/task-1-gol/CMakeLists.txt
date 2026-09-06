@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.16)
+project(gol_workspace LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+add_library(gol_logic src/game_of_life_lib.cpp)
+target_include_directories(gol_logic PUBLIC include)

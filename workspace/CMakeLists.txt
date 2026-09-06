@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(cpp_agent_workspace LANGUAGES CXX)
+add_subdirectory(task-1-gol)
+add_subdirectory(task-2-transformation)
+add_subdirectory(task-3-rasterization)
+add_subdirectory(task-4-raytracing)

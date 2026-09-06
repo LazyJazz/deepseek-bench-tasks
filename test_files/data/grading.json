@@ -1,0 +1,25 @@
+{
+  "resolved_threshold": 0.8,
+  "configure_timeout_seconds": 60,
+  "build_timeout_seconds": 120,
+  "score_caps": {"gol.no_allocation": 0.6},
+  "tasks": {
+    "task-1-gol": {"weight": 1, "groups": {
+      "gol.patterns": 20, "gol.edges": 15, "gol.nonbinary": 10,
+      "gol.exhaustive": 15, "gol.regression": 25, "gol.large": 15,
+      "gol.no_allocation": 0
+    }},
+    "task-2-transformation": {"weight": 1, "groups": {
+      "transformation.translate": 20, "transformation.rotate": 30,
+      "transformation.lookat": 30, "transformation.perspective": 20
+    }},
+    "task-3-rasterization": {"weight": 1, "groups": {
+      "raster.pixel": 10, "raster.line": 25, "raster.rectangle": 15,
+      "raster.circle": 20, "raster.triangle": 30
+    }},
+    "task-4-raytracing": {"weight": 1, "groups": {
+      "ray.sphere": 20, "ray.triangle": 20, "ray.closest": 15,
+      "ray.lighting": 20, "ray.reflection": 15, "ray.scene": 10
+    }}
+  }
+}

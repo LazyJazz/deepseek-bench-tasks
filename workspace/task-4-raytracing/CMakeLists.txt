@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(task_4_raytracing LANGUAGES CXX)
+add_library(raytracing_logic src/raytracer.cpp)
+target_include_directories(raytracing_logic PUBLIC include)
+target_include_directories(raytracing_logic SYSTEM PUBLIC ../external/glm ../external/stb)
+target_compile_features(raytracing_logic PUBLIC cxx_std_17)

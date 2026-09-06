@@ -1,0 +1,12 @@
+{
+  "id": "task-2-transformation",
+  "name": "task-2-transformation",
+  "language": "C++17",
+  "instructions": "README.md",
+  "editable_files": [
+    "src/transformation.cpp"
+  ],
+  "external_dependencies": [
+    "../external/eigen"
+  ]
+}

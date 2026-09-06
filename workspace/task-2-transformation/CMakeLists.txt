@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(task_2_transformation LANGUAGES CXX)
+add_library(transformation_logic src/transformation.cpp)
+target_include_directories(transformation_logic PUBLIC include)
+target_include_directories(transformation_logic SYSTEM PUBLIC ../external/eigen)
+target_compile_features(transformation_logic PUBLIC cxx_std_17)

@@ -1,0 +1,12 @@
+{
+  "id": "task-3-rasterization",
+  "name": "task-3-rasterization",
+  "language": "C++17",
+  "instructions": "README.md",
+  "editable_files": [
+    "src/draw.cpp"
+  ],
+  "external_dependencies": [
+    "../external/stb"
+  ]
+}

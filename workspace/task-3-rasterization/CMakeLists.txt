@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(task_3_rasterization LANGUAGES CXX)
+add_library(rasterization_logic src/image.cpp src/draw.cpp)
+target_include_directories(rasterization_logic PUBLIC include)
+target_include_directories(rasterization_logic SYSTEM PUBLIC ../external/stb)
+target_compile_features(rasterization_logic PUBLIC cxx_std_17)

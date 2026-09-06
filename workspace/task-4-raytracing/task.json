@@ -1,0 +1,13 @@
+{
+  "id": "task-4-raytracing",
+  "name": "task-4-raytracing",
+  "language": "C++17",
+  "instructions": "README.md",
+  "editable_files": [
+    "src/raytracer.cpp"
+  ],
+  "external_dependencies": [
+    "../external/glm",
+    "../external/stb"
+  ]
+}
